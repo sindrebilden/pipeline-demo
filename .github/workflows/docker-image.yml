@@ -14,6 +14,7 @@ jobs:
     - name: Run Tests
       run: go test .
     - name: Build the Docker image
-      run: docker build . \
+      run: docker buildx build . \
             --push -t ghcr.io/sindrebilden/pipeline-demo:$(date +%s) \
-            --cache-to type=gha --cache-from type=gha
+            --cache-to type=gha,url=ghcr.no/sindrebilden \
+            --cache-from type=gha,url=ghcr.no/sindrebilden
