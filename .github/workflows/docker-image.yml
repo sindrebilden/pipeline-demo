@@ -14,9 +14,9 @@ jobs:
     - name: Run Tests
       run: go test .
     - name: Build the Docker image
-      run: docker buildx build .
+      run: docker buildx build . --cache-to type=gha --cache-from type=gha
       
       #\
       #      --push -t ghcr.io/sindrebilden/pipeline-demo:$(date +%s) \
-      #      --cache-to type=gha \
+      #       \
       #      --cache-from type=gha
