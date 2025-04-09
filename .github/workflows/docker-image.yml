@@ -11,12 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+    - name: Cache Gradle packages
+      uses: actions/cache@v4
+      with: 
+        path: |
+            ~/.docker
     - name: Run Tests
       run: go test .
+    - name: Debuggg
+      run: ls ~/
     - name: Build the Docker image
-      run: docker buildx build . --cache-to type=gha --cache-from type=gha
-      
-      #\
-      #      --push -t ghcr.io/sindrebilden/pipeline-demo:$(date +%s) \
-      #       \
-      #      --cache-from type=gha
+      run: docker buildx build . --cache-to type=gha --cache-from type=gha --push
