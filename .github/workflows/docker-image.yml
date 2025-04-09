@@ -19,7 +19,7 @@ jobs:
     - name: Run Tests
       run: go test .
     - name: Debuggg
-      run: ls ~/
+      run: ls -alh ~/
     - name: Build the Docker image
       run: docker buildx build . --cache-to type=gha --cache-from type=gha --push --tag ghcr.io/${{ github.repository }}:${{ github.sha }}
  
