@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-    - name: Cache Gradle packages
+    - name: Cache Docker
       uses: actions/cache@v4
       with: 
         key: docker
@@ -21,4 +21,5 @@ jobs:
     - name: Debuggg
       run: ls ~/
     - name: Build the Docker image
-      run: docker buildx build . --cache-to type=gha --cache-from type=gha --push
+      run: docker buildx build . --cache-to type=gha --cache-from type=gha --push --tag ghcr.io/${{ github.repository }}:${{ github.sha }}
+ 
